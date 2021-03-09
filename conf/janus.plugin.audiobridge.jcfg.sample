@@ -47,10 +47,52 @@ general: {
 	#string_ids = true
 }
 
-room-1234: {
-	description = "Demo Room"
-	secret = "adminpwd"
-	sampling_rate = 16000
+room-1000: {
+	description = "Backstage"
+	pin = "JanusTalkWebRTC"
+	sampling_rate = 12000
 	record = false
 	#record_file = "/path/to/recording.wav"
+}
+room-1001: {
+    description = "Forum"
+    pin = "JanusTalkWebRTC"
+    sampling_rate = 12000
+    record = false
+    #record_file = "/path/to/recording.wav"
+}
+room-1002: {
+    description = "Repair Room"
+    pin = "JanusTalkWebRTC"
+    sampling_rate = 12000
+    record = false
+    #record_file = "/path/to/recording.wav"
+}
+room-1003: {
+    description = "Product Zone"
+    pin = "JanusTalkWebRTC"
+    sampling_rate = 12000
+    record = false
+    #record_file = "/path/to/recording.wav"
+}
+room-1004: {
+    description = "Flex Channel 1"
+    pin = "JanusTalkWebRTC"
+    sampling_rate = 12000
+    record = false
+    #record_file = "/path/to/recording.wav"
+}
+room-1005: {
+    description = "Flex Channel 2"
+    pin = "JanusTalkWebRTC"
+    sampling_rate = 12000
+    record = false
+    #record_file = "/path/to/recording.wav"
+}
+room-1006: {
+    description = "All Channels"
+    pin = "JanusTalkWebRTC"
+    sampling_rate = 12000
+    record = false
+    #record_file = "/path/to/recording.wav"
 }
