@@ -404,7 +404,6 @@ int janus_sctp_data_to_dtls(void *instance, void *buffer, size_t length, uint8_t
 }
 
 static int janus_sctp_incoming_data(struct socket *sock, union sctp_sockstore addr, void *data, size_t datalen, struct sctp_rcvinfo rcv, int flags, void *ulp_info) {
-    JANUS_LOG(LOG_WARN, "janus_sctp_incoming_data\n");
 	janus_mutex_lock(&sctp_mutex);
 	janus_sctp_association *sctp = (janus_sctp_association *)g_hash_table_lookup(sctp_ids, ulp_info);
 	janus_mutex_unlock(&sctp_mutex);
@@ -1061,7 +1060,6 @@ void janus_sctp_handle_unknown_message(char *msg, size_t length, uint16_t stream
 
 void janus_sctp_handle_data_message(janus_sctp_association *sctp, gboolean textdata, char *buffer, size_t length, uint16_t stream) {
 	janus_sctp_channel *channel;
-    JANUS_LOG(LOG_WARN, "janus_sctp_handle_data_message\n");
 
 	channel = janus_sctp_find_channel_by_stream(sctp, stream);
 	if(channel == NULL) {
@@ -1096,7 +1094,6 @@ void janus_sctp_handle_message(janus_sctp_association *sctp, char *buffer, size_
 	janus_datachannel_open_request *req;
 	janus_datachannel_open_response *rsp;
 	janus_datachannel_ack *ack, *msg;
-    JANUS_LOG(LOG_WARN, "janus_sctp_handle_message\n");
 
 	switch (ppid) {
 		case DATA_CHANNEL_PPID_CONTROL:

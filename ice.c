@@ -4716,8 +4716,7 @@ static void janus_ice_queue_packet(janus_ice_handle *handle, janus_ice_queued_pa
 	/* TODO: There is a potential race condition where the "queued_packets"
 	 * could get released between the condition and pushing the packet. */
 	if(handle->queued_packets != NULL) {
-        g_async_queue_push_front(handle->queued_packets, pkt);
-        //		g_async_queue_push(handle->queued_packets, pkt);
+        g_async_queue_push(handle->queued_packets, pkt);
 		g_main_context_wakeup(handle->mainctx);
 	} else {
 		janus_ice_free_queued_packet(pkt);
@@ -4972,21 +4971,15 @@ void janus_ice_relay_sctp(janus_ice_handle *handle, char *buffer, int length) {
 }
 
 void janus_ice_notify_data_ready(janus_ice_handle *handle) {
-    JANUS_LOG(LOG_WARN, "HAVE SCTP has been defined\n");
 #ifdef HAVE_SCTP
-    if(!handle || handle->queued_packets == NULL) {
-        JANUS_LOG(LOG_WARN, "HAVE SCTP (!handle || handle->queued_packets == NULL)\n");
+    if(!handle || handle->queued_packets == NULL)
         return;
-    }
 	/* Queue this event */
 #if GLIB_CHECK_VERSION(2, 46, 0)
-    JANUS_LOG(LOG_WARN, "HAVE SCTP GLIB_CHECK_VERSION(2, 46, 0)\n");
 	g_async_queue_push_front(handle->queued_packets, &janus_ice_data_ready);
 #else
-    JANUS_LOG(LOG_WARN, "HAVE SCTP !GLIB_CHECK_VERSION(2, 46, 0)\n");
 	g_async_queue_push(handle->queued_packets, &janus_ice_data_ready);
 #endif
-    JANUS_LOG(LOG_WARN, "!HAVE SCTP g_main_context_wakeup(handle->mainctx)\n");
 	g_main_context_wakeup(handle->mainctx);
 #endif
 }
